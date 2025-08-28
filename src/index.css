@@ -9,25 +9,40 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 215 25% 27%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 27%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 27%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 215 25% 27%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 215 25% 27%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 215 13% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 43 74% 49%;
+    --accent-foreground: 0 0% 100%;
+
+    --luxury-gold: 43 74% 49%;
+    --luxury-gold-foreground: 215 25% 27%;
+    
+    --luxury-navy: 215 25% 27%;
+    --luxury-navy-light: 215 20% 35%;
+    
+    --gradient-luxury: linear-gradient(135deg, hsl(43 74% 49% / 0.1), hsl(215 25% 27% / 0.05));
+    --gradient-hero: linear-gradient(135deg, hsl(215 25% 27% / 0.8), hsl(215 25% 27% / 0.4));
+    
+    --shadow-luxury: 0 25px 50px -12px hsl(215 25% 27% / 0.25);
+    --shadow-elegant: 0 10px 30px -10px hsl(215 25% 27% / 0.15);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-luxury: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -101,5 +116,10 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
   }
 }
