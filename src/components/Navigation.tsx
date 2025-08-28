@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const Navigation = () => {
+interface NavigationProps {
+  onGetStarted: () => void;
+}
+
+const Navigation = ({ onGetStarted }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -15,62 +20,63 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: "Properties", href: "#properties" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Locations", href: "#locations" },
-    { name: "Contact", href: "#contact" },
+    { name: "Properties", href: "/properties" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Locations", href: "/locations" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       isScrolled 
-        ? "bg-white/95 backdrop-blur-md shadow-elegant" 
-        : "bg-transparent"
+        ? "bg-black/90 backdrop-blur-xl shadow-2xl rounded-b-3xl mx-4 mt-2" 
+        : "bg-black/20 backdrop-blur-sm rounded-full mx-4 mt-4"
     }`}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <div className={`text-2xl font-light transition-colors duration-300 ${
-              isScrolled ? "text-luxury-navy" : "text-white"
-            }`}>
-              <span className="font-normal">Luxury</span>
-              <span className="text-luxury-gold">Residence</span>
+          <Link to="/" className="flex items-center">
+            <div className="text-xl font-light text-white">
+              <span className="font-normal">LOGO</span>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
+            <Link
+              to="/"
+              className="text-white hover:text-accent transition-colors duration-300 border-b-2 border-accent"
+            >
+              Home
+            </Link>
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
-                className={`transition-colors duration-300 hover:text-luxury-gold ${
-                  isScrolled ? "text-luxury-navy" : "text-white"
-                }`}
+                to={item.href}
+                className="text-white hover:text-accent transition-colors duration-300"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
+            <span className="text-white">Blogs</span>
           </div>
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
             <Button 
-              variant={isScrolled ? "luxury" : "hero"} 
+              onClick={onGetStarted}
+              variant="luxury" 
               size="lg"
-              className="transition-all duration-300"
+              className="bg-accent hover:bg-accent/90 text-black font-medium rounded-full px-6 py-2 transition-all duration-300"
             >
-              Get Started
+              Let's Talk →
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden transition-colors duration-300 ${
-              isScrolled ? "text-luxury-navy" : "text-white"
-            }`}
+            className="md:hidden text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -79,20 +85,36 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md shadow-elegant rounded-lg mt-2 p-6 animate-fade-in">
+          <div className="md:hidden bg-black/95 backdrop-blur-xl rounded-2xl mt-2 p-6 animate-fade-in">
             <div className="flex flex-col space-y-4">
+              <Link
+                to="/"
+                className="text-white hover:text-accent transition-colors duration-300 py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
-                  className="text-luxury-navy hover:text-luxury-gold transition-colors duration-300 py-2"
+                  to={item.href}
+                  className="text-white hover:text-accent transition-colors duration-300 py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
-              <Button variant="luxury" size="lg" className="mt-4">
-                Get Started
+              <span className="text-white py-2">Blogs</span>
+              <Button 
+                onClick={() => {
+                  onGetStarted();
+                  setIsMobileMenuOpen(false);
+                }}
+                variant="luxury" 
+                size="lg" 
+                className="mt-4 bg-accent hover:bg-accent/90 text-black rounded-full"
+              >
+                Let's Talk →
               </Button>
             </div>
           </div>

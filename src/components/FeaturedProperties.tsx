@@ -2,7 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Bed, Bath, Square } from "lucide-react";
 
-const FeaturedProperties = () => {
+interface FeaturedPropertiesProps {
+  onPropertyClick: (property: any) => void;
+}
+
+const FeaturedProperties = ({ onPropertyClick }: FeaturedPropertiesProps) => {
   const properties = [
     {
       id: 1,
@@ -67,8 +71,9 @@ const FeaturedProperties = () => {
           {properties.map((property, index) => (
             <Card 
               key={property.id} 
-              className="group overflow-hidden shadow-elegant hover:shadow-luxury transition-all duration-500 transform hover:scale-[1.02] bg-white border-0"
+              className="group overflow-hidden shadow-elegant hover:shadow-luxury transition-all duration-500 transform hover:scale-[1.02] bg-white border-0 cursor-pointer"
               style={{ animationDelay: `${index * 150}ms` }}
+              onClick={() => onPropertyClick(property)}
             >
               <div className="relative overflow-hidden">
                 <img 
@@ -111,7 +116,7 @@ const FeaturedProperties = () => {
                   </div>
                 </div>
                 
-                <Button variant="outline" className="w-full group-hover:variant-luxury transition-all duration-300">
+                <Button variant="outline" className="w-full group-hover:bg-luxury-gold group-hover:text-luxury-gold-foreground transition-all duration-300">
                   View Details
                 </Button>
               </CardContent>
