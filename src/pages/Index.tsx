@@ -11,6 +11,7 @@ import PropertyModal from "@/components/PropertyModal";
 import AutoShowModal from "@/components/AutoShowModal";
 
 const Index = () => {
+  console.log("Index component is rendering...");
   const [isGetStartedOpen, setIsGetStartedOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [isPropertyModalOpen, setIsPropertyModalOpen] = useState(false);
