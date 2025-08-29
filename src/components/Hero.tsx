@@ -3,25 +3,17 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search } from "lucide-react";
 import luxuryHero from "@/assets/luxury-hero.jpg";
-
 interface HeroProps {
   onGetStarted: () => void;
 }
-
-const Hero = ({ onGetStarted }: HeroProps) => {
-  const propertyTypes = [
-    "Apartment", "Duplexes", "Manor", "Commercial", "Swimming pool"
-  ];
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+const Hero = ({
+  onGetStarted
+}: HeroProps) => {
+  const propertyTypes = ["Apartment", "Duplexes", "Manor", "Commercial", "Swimming pool"];
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={luxuryHero} 
-          alt="Luxury Real Estate" 
-          className="w-full h-full object-cover"
-        />
+        <img src={luxuryHero} alt="Luxury Real Estate" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
       
@@ -95,20 +87,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
           </div>
           
           {/* Property Type Suggestions */}
-          <div className="mb-12">
-            <p className="text-white/70 text-sm mb-4">Suggestion:</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {propertyTypes.map((type) => (
-                <Badge 
-                  key={type} 
-                  variant="outline" 
-                  className="bg-white/10 border-white/20 text-white hover:bg-white/20 cursor-pointer px-4 py-2 rounded-full text-sm transition-all"
-                >
-                  {type}
-                </Badge>
-              ))}
-            </div>
-          </div>
+          
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button onClick={onGetStarted} variant="hero" size="lg" className="text-lg px-8 py-4 rounded-xl">
@@ -123,12 +102,8 @@ const Hero = ({ onGetStarted }: HeroProps) => {
       
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-luxury-float">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
-        </div>
+        
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
